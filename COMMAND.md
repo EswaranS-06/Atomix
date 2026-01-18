@@ -40,4 +40,19 @@ db.auth("atomix", "atomixpass")
 
 use atomix
 db.scans.find().pretty()
+
+
+
+
+curl -X POST http://127.0.0.1:8000/api/scans/ \
+  -H "Content-Type: application/json" \
+  -d '{"target": "example.com", "profile": "default"}'
+
+curl -X POST http://127.0.0.1:8000/api/scans/<scan_id>/queue/
+
+
+uv run python manage.py shell
+from scans.executor.runner import process_queued_scans
+process_queued_scans()
+
 ```
