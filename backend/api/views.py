@@ -8,7 +8,8 @@ import json
 from scans.repository import create_scan
 from config.profiles.loader import load_profile, ProfileError
 
-
+from scans.schemas.findings import FindingsResponseSchema
+from scans.schemas.summary import ScanSummarySchema
 
 def list_profiles(request):
     profiles_dir = os.getenv("PROFILES_DIR", "profiles")
@@ -128,12 +129,16 @@ def scan_findings_view(request, scan_id: str):
         )
     )
 
+    payload = {
+        "scan_id": scan_id,
+        "count": len(findings),
+        "findings": findings,
+    }
+
+    validated = FindingsResponseSchema(**payload)
+
     return JsonResponse(
-        {
-            "scan_id": scan_id,
-            "count": len(findings),
-            "findings": findings,
-        },
+        validated.model_dump(),
         status=200,
     )
     
@@ -153,4 +158,10 @@ def scan_summary_view(request, scan_id: str):
 
     summary = build_scan_summary(scan_id)
 
-    return JsonResponse(summary, status=200)
+    validated = ScanSummarySchema(**summary)
+
+    return JsonResponse(
+        validated.model_dump(),
+        status=200,
+    )
+
