@@ -16,6 +16,9 @@
 > - Tool adapters
 > - Structured output (future)
 
+## Reference
+
+```bash
 whatweb https://example.com --log-json=/tmp/ww.json
 
 nmap -sV --script vuln -oX /tmp/nmap.xml example.com
@@ -23,3 +26,18 @@ nmap -sV --script vuln -oX /tmp/nmap.xml example.com
 docker run --rm -it \
   -v $(pwd)/wordlists:/data/wordlists \
   recon
+
+docker exec -it atomix-mongodb mongosh \
+  -u atomix \
+  -p atomixpass \
+  --authenticationDatabase admin
+#or
+docker exec -it atomix-mongodb mongosh
+use admin
+db.auth("atomix", "atomixpass")
+
+
+
+use atomix
+db.scans.find().pretty()
+```

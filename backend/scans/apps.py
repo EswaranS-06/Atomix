@@ -20,3 +20,4 @@ class ScanState:
         COMPLETED,
         FAILED,
     }
+

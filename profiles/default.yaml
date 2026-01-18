@@ -1,0 +1,33 @@
+profile: default
+desc: Basic passive + light active recon
+type: both
+
+tools:
+  - name: whatweb
+    enabled: true
+    info: Web technology fingerprinting
+    args:
+      - whatweb
+      - --no-errors
+      - --color=never
+      - "{target}"
+    output:
+      type: stdout
+      path: null
+    regex: null
+
+  - name: nikto
+    enabled: true
+    info: Web server vulnerability scanner
+    args:
+      - nikto
+      - -h
+      - "http://{target}"
+      - -Format
+      - json
+      - -o
+      - "/tmp/nikto.json"
+    output:
+      type: file
+      path: /tmp/nikto.json
+    regex: null
