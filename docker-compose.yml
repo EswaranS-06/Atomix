@@ -1,0 +1,22 @@
+services:
+  mongodb:
+    image: ${MONGO_IMAGE}
+    container_name: ${MONGO_CONTAINER_NAME}
+    restart: unless-stopped
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+
+    ports:
+      - "${MONGO_PORT}:27017"
+
+    volumes:
+      - atomix_mongo_data:/data/db
+
+    command: ["mongod", "--bind_ip_all"]
+
+volumes:
+  atomix_mongo_data:
+    name: atomix_mongo_data

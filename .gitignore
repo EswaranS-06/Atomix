@@ -1,0 +1,134 @@
+# General
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+*.log
+*.tmp
+*.temp
+*.swp
+*~
+*.bak
+*.orig
+
+# OS generated files
+Icon?
+ehthumbs.db
+ehthumbs_vista.db
+*.lnk
+
+# Editor directories and files
+.idea/
+*.iml
+*.iws
+.vscode/
+.vscode-test/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.pnp.*
+.pnp.js
+.next/
+.nuxt/
+.out/
+.dist/
+.build/
+.cache/
+parcel-cache/
+.cache-loader/
+bower_components/
+dist/
+build/
+public/build/
+coverage/
+.nyc_output/
+jest-*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyproj
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.ipynb_checkpoints
+
+# iOS / macOS / Xcode
+*.xcworkspace
+!default.xcworkspace/contents.xcworkspacedata
+DerivedData/
+build/
+*.xcodeproj/project.xcworkspace/
+*.xcuserstate
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# Certificates, keys, secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_dsa*
+*.jks
+*.env
+.env.*
+secrets.*
+credentials.*
+*.token
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+.docker/
+*.tgz
+
+# Logs and reports
+logs/
+*.log
+*.trace
+report.html
+
+# Archives and packages
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Misc
+.sass-cache
+.cache
+*.local
+.idea_modules/
+.envrc
+.vagrant/
+*.msi
+*.apk
+*.dmg
+
+# Allow developers to add exceptions by creating .gitignore.local (ignored by git)
+.gitignore.local
