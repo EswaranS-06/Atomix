@@ -103,3 +103,54 @@ def queue_scan_view(request, scan_id: str):
         return JsonResponse({"error": "Scan not found"}, status=404)
 
     return JsonResponse(scan)
+
+from django.http import JsonResponse
+from scans.repository import get_database
+
+
+def scan_findings_view(request, scan_id: str):
+    """
+    Returns all findings for a given scan.
+    Read-only.
+    """
+    if request.method != "GET":
+        return JsonResponse(
+            {"error": "Method not allowed"},
+            status=405,
+        )
+
+    db = get_database()
+
+    findings = list(
+        db.findings.find(
+            {"scan_id": scan_id},
+            {"_id": 0},
+        )
+    )
+
+    return JsonResponse(
+        {
+            "scan_id": scan_id,
+            "count": len(findings),
+            "findings": findings,
+        },
+        status=200,
+    )
+    
+from scans.summary import build_scan_summary
+
+
+def scan_summary_view(request, scan_id: str):
+    """
+    Returns aggregated summary for a scan.
+    Read-only.
+    """
+    if request.method != "GET":
+        return JsonResponse(
+            {"error": "Method not allowed"},
+            status=405,
+        )
+
+    summary = build_scan_summary(scan_id)
+
+    return JsonResponse(summary, status=200)
