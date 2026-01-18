@@ -18,3 +18,9 @@ urlpatterns += [
     path("scans/", list_scans_view),
     path("scans/<str:scan_id>/", get_scan_view),
 ]
+
+from api.views import queue_scan_view
+
+urlpatterns += [
+    path("scans/<str:scan_id>/queue/", queue_scan_view),
+]

@@ -21,3 +21,11 @@ class ScanState:
         FAILED,
     }
 
+class ScanTransitions:
+    ALLOWED = {
+        ScanState.CREATED: {ScanState.QUEUED},
+        ScanState.QUEUED: {ScanState.RUNNING},
+        ScanState.RUNNING: {ScanState.COMPLETED, ScanState.FAILED},
+        ScanState.COMPLETED: set(),
+        ScanState.FAILED: set(),
+    }

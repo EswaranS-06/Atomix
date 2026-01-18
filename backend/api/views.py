@@ -83,3 +83,23 @@ def get_scan_view(request, scan_id: str):
         return JsonResponse({"error": "Scan not found"}, status=404)
 
     return JsonResponse(scan)
+
+from scans.apps import ScanState
+from scans.repository import update_scan_state
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def queue_scan_view(request, scan_id: str):
+
+    if request.method != "POST":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+
+    try:
+        scan = update_scan_state(scan_id, ScanState.QUEUED)
+    except ValueError as exc:
+        return JsonResponse({"error": str(exc)}, status=400)
+
+    if not scan:
+        return JsonResponse({"error": "Scan not found"}, status=404)
+
+    return JsonResponse(scan)

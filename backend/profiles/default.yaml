@@ -1,0 +1,19 @@
+profile: default
+desc: Basic passive + light active recon
+type: both
+
+tools:
+  - name: whatweb
+    info: Web technology fingerprinting
+    command:
+      - whatweb
+      - "{target}"
+      
+  - name: nikto
+    info: Web server vulnerability scanner
+    command:
+      - nikto
+      - -h
+      - "http://{target}"
+      - -maxtime
+      - "120"
